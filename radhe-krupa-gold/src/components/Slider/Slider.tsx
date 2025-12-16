@@ -7,59 +7,45 @@ interface SliderProps {
     children: React.ReactNode[];
     autoplay?: boolean;
     interval?: number;
-    showDots?: boolean;
-    showArrows?: boolean;
 }
 
 export default function Slider({
                                    children,
                                    autoplay = true,
                                    interval = 5000,
-                                   showDots = true,
-                                   showArrows = true,
                                }: SliderProps) {
-    const slides = [
-        children[children.length - 1], // clone last
-        ...children,
-        children[0], // clone first
-    ];
-
-    const [index, setIndex] = useState(1);
+    const slides = [...children, children[0]]; // clone first slide
+    const [index, setIndex] = useState(0);
     const [transition, setTransition] = useState(true);
-    const trackRef = useRef<HTMLDivElement>(null);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         if (!autoplay) return;
 
-        const timer = setInterval(() => {
+        timeoutRef.current = setInterval(() => {
             setIndex((prev) => prev + 1);
         }, interval);
 
-        return () => clearInterval(timer);
+        return () => {
+            if (timeoutRef.current) clearInterval(timeoutRef.current);
+        };
     }, [autoplay, interval]);
 
+    // Handle seamless loop
     useEffect(() => {
         if (index === slides.length - 1) {
             setTimeout(() => {
                 setTransition(false);
-                setIndex(1);
+                setIndex(0);
             }, 500);
+        } else {
+            setTransition(true);
         }
-
-        if (index === 0) {
-            setTimeout(() => {
-                setTransition(false);
-                setIndex(slides.length - 2);
-            }, 500);
-        }
-
-        setTimeout(() => setTransition(true), 600);
     }, [index, slides.length]);
 
     return (
         <div className={styles.slider}>
             <div
-                ref={trackRef}
                 className={styles.track}
                 style={{
                     transform: `translateX(-${index * 100}%)`,
@@ -72,37 +58,6 @@ export default function Slider({
                     </div>
                 ))}
             </div>
-
-            {showArrows && (
-                <>
-                    <button
-                        className={`${styles.arrow} ${styles.left}`}
-                        onClick={() => setIndex((prev) => prev - 1)}
-                    >
-                        ‹
-                    </button>
-                    <button
-                        className={`${styles.arrow} ${styles.right}`}
-                        onClick={() => setIndex((prev) => prev + 1)}
-                    >
-                        ›
-                    </button>
-                </>
-            )}
-
-            {showDots && (
-                <div className={styles.dots}>
-                    {children.map((_, i) => (
-                        <span
-                            key={i}
-                            className={`${styles.dot} ${
-                                index - 1 === i ? styles.active : ""
-                            }`}
-                            onClick={() => setIndex(i + 1)}
-                        />
-                    ))}
-                </div>
-            )}
         </div>
     );
 }

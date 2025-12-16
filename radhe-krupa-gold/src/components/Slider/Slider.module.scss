@@ -1,3 +1,16 @@
+//.slider {
+//  width: 100%;
+//  overflow: hidden;
+//  position: relative;
+//}
+//
+//.track {
+//  display: flex;
+//}
+//
+//.slide {
+//  min-width: 100%;
+//}
 .slider {
   width: 100%;
   overflow: hidden;
@@ -6,11 +19,14 @@
 
 .track {
   display: flex;
+  width: 100%;
 }
 
 .slide {
   min-width: 100%;
+  height: 100%;
 }
+
 
 /* File: `src/components/Slider/Slider.module.scss` */
 .arrow {
