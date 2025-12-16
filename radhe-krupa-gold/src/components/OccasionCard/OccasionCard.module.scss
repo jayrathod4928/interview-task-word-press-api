@@ -1,0 +1,55 @@
+// OccasionCard.module.scss
+
+$text-dark: #1a1a1a;
+$hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+.cardLink {
+  text-decoration: none;
+  display: flex; // Now the main link is a flex container
+  flex-direction: column; // Stack the image container and the title
+  border-radius: 8px;
+  overflow: hidden; // Important for rounding the image corners
+  background-color: white; // Ensures the text background is clean
+  cursor: pointer; // Set cursor for the entire clickable element
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  // Add subtle lift/shadow on hover
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $hover-shadow;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; // Square aspect ratio
+  overflow: hidden;
+
+  // Subtle zoom effect on the image on hover
+  :global(img) {
+    transition: transform 0.4s ease;
+  }
+
+  .cardLink:hover & :global(img) { // Target the image when the link is hovered
+    transform: scale(1.05);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-dark;
+  text-align: center;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  // Ensure the title block doesn't collapse if the cardLink is flex
+  flex-shrink: 0;
+}

@@ -1,9 +1,15 @@
+// page.tsx (Final Code with OccasionGrid)
+
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import Slider from "@/components/Slider/Slider";
 import CoinCard from "@/components/CoinCard/CoinCard";
 import ProductVariantSection from "@/components/ProductVariantCard/ProductVariantSection";
+// 🛑 NEW: Import the Occasions Grid component
+import OccasionGrid from "@/components/OccasionCard/OccasionGrid/OccasionGrid";
+// 🛑 NEW: Import the Occasions Mock Data
+import { OCCASION_MOCK_DATA } from "@/components/OccasionCard/mock";
 
 // CoinCard mock
 import { MOCK_PRODUCTS as COIN_PRODUCTS } from "@/components/CoinCard/mock";
@@ -78,6 +84,13 @@ export default function Page() {
                     visibleLimit={8}
                     viewMoreLink="/collections/24k-extra-large-pure-gold-coins"
                 />
+
+                {/* 🛑 NEW SECTION: Occasion Grid at the bottom */}
+                <section className={styles.occasionSection}>
+                    {/* Optionally, you can add a title here if the OccasionGrid component
+                       itself doesn't include one, but typically it would. */}
+                    <OccasionGrid data={OCCASION_MOCK_DATA} />
+                </section>
             </main>
         </>
     );
