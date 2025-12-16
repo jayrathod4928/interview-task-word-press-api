@@ -1,4 +1,3 @@
-// File: `src/components/Header/Header.tsx`
 "use client";
 
 import { useState } from "react";
@@ -8,9 +7,12 @@ import Logo from "@/components/Images/Radhe-Krupa-Gold.png";
 import MenuIcon from "@/components/Icons/MenuIcon";
 import CloseIcon from "@/components/Icons/CloseIcon";
 import SearchIcon from "@/components/Icons/SearchIcon";
+import UserIcon from "@/components/Icons/UserIcon";
+import CartIcon from "@/components/Icons/CartIcon";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [productsOpen, setProductsOpen] = useState(false);
 
     return (
         <>
@@ -18,7 +20,6 @@ export default function Header() {
                 {/* ===== TOP BAR ===== */}
                 <div className={styles.topBar}>
                     <div className={styles.leftIcons}>
-                        {/* Mobile menu toggle on left */}
                         <button
                             className={styles.menuToggle}
                             onClick={() => setMenuOpen(true)}
@@ -33,7 +34,6 @@ export default function Header() {
                         </button>
                     </div>
 
-                    {/* Center Logo */}
                     <div className={styles.logo}>
                         <Image
                             src={Logo}
@@ -45,11 +45,12 @@ export default function Header() {
                         <span>Radhe Krupa</span>
                     </div>
 
-                    {/* Right */}
                     <div className={styles.rightIcons}>
-                        <button className={styles.iconBtn} aria-label="Account">👤</button>
+                        <button className={styles.iconBtn} aria-label="User Account">
+                            <UserIcon width={20} height={20} />
+                        </button>
                         <button className={styles.iconBtn} aria-label="Cart">
-                            👜
+                            <CartIcon width={20} height={20} />
                             <span className={styles.badge}>0</span>
                         </button>
                     </div>
@@ -63,6 +64,12 @@ export default function Header() {
                         <a href="#">
                             Products <span className={styles.arrow}>▼</span>
                         </a>
+                        <div className={styles.dropdownContent}>
+                            <a href="#">Large Gold Coin</a>
+                            <a href="#">Extra-Large Slim Gold Coin</a>
+                            <a href="#">Gold Frames</a>
+                            <a href="#">All Items</a>
+                        </div>
                     </div>
 
                     <a href="#">Bulk Orders</a>
@@ -72,7 +79,7 @@ export default function Header() {
                 </nav>
             </header>
 
-                {/* ===== OVERLAY ===== */}
+            {/* ===== OVERLAY ===== */}
             {menuOpen && (
                 <div
                     className={styles.overlay}
@@ -91,7 +98,28 @@ export default function Header() {
                 </button>
 
                 <a href="#">Home</a>
-                <a href="#">Products</a>
+
+                {/* Side nav Products with slide-in submenu */}
+                <div>
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault(); // prevent navigation
+                            setProductsOpen(!productsOpen);
+                        }}
+                    >
+                        Products <span className={styles.arrow}>▶</span>
+                    </a>
+
+                    <div className={`${styles.sideDropdown} ${productsOpen ? styles.open : ""}`}>
+                        <a href="#">Large Gold Coin</a>
+                        <a href="#">Extra-Large Slim Gold Coin</a>
+                        <a href="#">Gold Frames</a>
+                        <a href="#">All Items</a>
+                    </div>
+                </div>
+
+
                 <a href="#">Bulk Orders</a>
                 <a href="#">Jewellery Store Tie-ups</a>
                 <a href="#">About Us</a>
