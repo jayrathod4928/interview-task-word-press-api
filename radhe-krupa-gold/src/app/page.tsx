@@ -23,6 +23,7 @@ import Hero from "@/components/Hero/Hero";
 import LuxuryGoldSection from "@/components/LuxuryGoldSection/LuxuryGoldSection";
 import WhyUsSection from "@/components/WhyUsSection/WhyUsSection";
 import TestimonialSlider from "@/components/TestimonialSlider/TestimonialSlider";
+import MapComponent from "@/components/MapComponent/MapComponent";
 
 export default function Page() {
     /* ===============================
@@ -121,6 +122,10 @@ export default function Page() {
                     />
                 </section>
                 <TestimonialSlider />
+                <section>
+
+                </section>
+                <MapComponent />
                 <section>
 
                 </section>
