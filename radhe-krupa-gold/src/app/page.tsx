@@ -67,7 +67,7 @@ export default function Page() {
                     {showCoinViewMore && (
                         <div className={styles.viewMoreContainer}>
                             <Link
-                                href="/collections/24k-extra-large-pure-gold-coins"
+                                href="/collections/24k-large-solid-pure-gold-coins"
                                 className={styles.viewMoreBtn}
                             >
                                 View More

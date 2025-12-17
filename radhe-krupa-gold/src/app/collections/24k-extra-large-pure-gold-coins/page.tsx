@@ -9,8 +9,6 @@ import { MOCK_PRODUCTS } from "@/components/ProductVariantCard/Mock";
 export default function LargeSolidGoldCoinsPage() {
     return (
         <>
-            <Header />
-
             <main style={{ paddingTop: "2rem" }}>
                 <section className={styles.coinSection}>
                     <div className={styles.sectionHeader}>

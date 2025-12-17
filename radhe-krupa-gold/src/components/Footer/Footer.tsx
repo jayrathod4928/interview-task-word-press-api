@@ -35,11 +35,11 @@ const Footer: React.FC = () => {
                     {/* About Section */}
                     <div className={`${styles.column} ${isSectionOpen('about') ? styles.active : ''}`}>
                         <h3 onClick={() => toggleSection('about')}>
-                            ABOUT EARTH MINT <ChevronIcon />
+                            ABOUT Radhe Krupa <ChevronIcon />
                         </h3>
                         <div className={styles.collapsibleContent}>
                             <p>
-                                Earth Mint is a gold production and development company. Our core
+                                Radhe Krupa is a gold production and development company. Our core
                                 philosophy of creating world-class products in a world-class way
                                 reflects in the quality of our precious metals and the trust our
                                 customers place in us.
@@ -105,8 +105,8 @@ const Footer: React.FC = () => {
 
                 <div className={styles.bottomBar}>
                     <div className={styles.copyright}>
-                        <Image src={Logo} alt="Earth Mint Logo" className={styles.logo} />
-                        <p>© 2025 Earth Mint Gold, Designed By Radhe Krupa</p>
+                        <Image src={Logo} alt="Radhe Krupa Logo" className={styles.logo} />
+                        <p>© 2025 Radhe Krupa Gold, Designed By Radhe Krupa</p>
                     </div>
                     <div className={styles.paymentIcons}>
                         <Image src={Payment} alt="Payment" />
