@@ -22,6 +22,7 @@ import slide2 from "@/components/Images/Slide-5.jpg";
 import Hero from "@/components/Hero/Hero";
 import LuxuryGoldSection from "@/components/LuxuryGoldSection/LuxuryGoldSection";
 import WhyUsSection from "@/components/WhyUsSection/WhyUsSection";
+import TestimonialSlider from "@/components/TestimonialSlider/TestimonialSlider";
 
 export default function Page() {
     /* ===============================
@@ -118,6 +119,10 @@ export default function Page() {
                         visibleLimit={8}
                         viewMoreLink="/collections/24k-extra-large-pure-gold-coins"
                     />
+                </section>
+                <TestimonialSlider />
+                <section>
+
                 </section>
             </main>
         </>
