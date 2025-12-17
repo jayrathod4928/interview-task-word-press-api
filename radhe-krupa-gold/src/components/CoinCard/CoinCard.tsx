@@ -1,33 +1,38 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { ChevronDown, ShoppingBag } from "lucide-react";
 import styles from "./CoinCard.module.scss";
 import { CoinProduct, WeightVariant } from "./mock";
 
 export default function CoinCard({ data }: { data: CoinProduct }) {
-    // Default to the first variant (50mg) for the dropdown text
     const [selectedVariant, setSelectedVariant] = useState<WeightVariant>(data.variants[0]);
-
-    // New state to track if user has actually chosen something
     const [hasSelected, setHasSelected] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleDropdown = () => setIsOpen(!isOpen);
-
     const handleSelect = (variant: WeightVariant) => {
         setSelectedVariant(variant);
-        setHasSelected(true); // User made a choice, switch to specific price
+        setHasSelected(true);
         setIsOpen(false);
     };
 
     return (
         <div className={styles.card}>
+            {/* IMAGE */}
             <div className={styles.imageContainer}>
-                <div className={styles.placeholder}>
-                    <div className={styles.circle}></div>
-                    <span>{data.isCertificate ? "CERTIFICATE" : "EARTH MINT"}</span>
-                </div>
+                <Image
+                    src={data.imageUrl}
+                    alt={data.title}
+                    fill
+                    className={styles.productImage}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                />
+
+                {/* Optional certificate badge */}
+                {data.isCertificate && (
+                    <span className={styles.badge}>CERTIFICATE</span>
+                )}
             </div>
 
             <div className={styles.actions}>
@@ -35,19 +40,19 @@ export default function CoinCard({ data }: { data: CoinProduct }) {
                     <button
                         type="button"
                         className={styles.dropdownBtn}
-                        onClick={toggleDropdown}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         {selectedVariant.weight}
-                        <ChevronDown
-                            size={16}
-                            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: '0.2s' }}
-                        />
+                        <ChevronDown size={16} />
                     </button>
 
                     {isOpen && (
                         <ul className={styles.dropdownMenu}>
                             {data.variants.map((variant) => (
-                                <li key={variant.weight} onClick={() => handleSelect(variant)}>
+                                <li
+                                    key={variant.weight}
+                                    onClick={() => handleSelect(variant)}
+                                >
                                     {variant.weight}
                                 </li>
                             ))}
@@ -62,7 +67,6 @@ export default function CoinCard({ data }: { data: CoinProduct }) {
 
             <div className={styles.details}>
                 <h3>{data.title}</h3>
-                {/* LOGIC: Show Range if not touched, Specific Price if touched */}
                 <p className={styles.price}>
                     {hasSelected ? selectedVariant.price : data.priceRange}
                 </p>

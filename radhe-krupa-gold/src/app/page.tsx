@@ -35,8 +35,6 @@ export default function Page() {
 
     return (
         <>
-            <Header />
-
             <main>
                 {/* ===== SLIDER ===== */}
                 <Slider autoplay interval={4000}>

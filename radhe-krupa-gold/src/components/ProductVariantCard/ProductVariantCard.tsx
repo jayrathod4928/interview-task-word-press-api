@@ -1,4 +1,3 @@
-// ProductVariantCard.tsx
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -7,18 +6,22 @@ import styles from "./ProductVariantCard.module.scss";
 import { CoinProduct, WeightVariant } from "./Mock";
 
 export default function ProductVariantCard({ data }: { data: CoinProduct }) {
+    const initialVariant =
+        data.variants.find(v => v.weight === data.initialWeight) ||
+        data.variants[0];
 
-    // TS error fixed by the updated mock.ts
-    const initialVariant = data.variants.find(v => v.weight === data.initialWeight) || data.variants[0];
     const [selectedVariant, setSelectedVariant] = useState<WeightVariant>(initialVariant);
     const [hasSelected, setHasSelected] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Effect to close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
                 setIsOpen(false);
             }
         };
@@ -29,9 +32,6 @@ export default function ProductVariantCard({ data }: { data: CoinProduct }) {
         };
     }, []);
 
-
-    const toggleDropdown = () => setIsOpen(!isOpen);
-
     const handleSelect = (variant: WeightVariant) => {
         setSelectedVariant(variant);
         setHasSelected(true);
@@ -40,30 +40,29 @@ export default function ProductVariantCard({ data }: { data: CoinProduct }) {
 
     return (
         <div className={styles.card}>
+            {/* IMAGE */}
             <div className={styles.imageContainer}>
                 <img
                     src={data.imageUrl}
-                    alt={data.title + " gold coin"}
+                    alt={`${data.title} gold coin`}
                     className={styles.productImage}
                 />
             </div>
 
+            {/* ACTIONS */}
             <div className={styles.actions}>
-                <div
-                    className={styles.dropdownWrapper}
-                    ref={dropdownRef}
-                >
+                <div className={styles.dropdownWrapper} ref={dropdownRef}>
                     <button
                         type="button"
                         className={styles.dropdownBtn}
-                        onClick={toggleDropdown}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         {selectedVariant.weight}
                         <ChevronDown
                             size={16}
                             style={{
-                                transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                                transition: '0.2s'
+                                transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                                transition: "0.2s",
                             }}
                         />
                     </button>
@@ -87,15 +86,13 @@ export default function ProductVariantCard({ data }: { data: CoinProduct }) {
                 </button>
             </div>
 
+            {/* DETAILS */}
             <div className={styles.details}>
                 <h3>{data.title}</h3>
                 <p className={styles.price}>
                     {hasSelected ? selectedVariant.price : data.priceRange}
                 </p>
-                {/* ✅ ADDED: Purity line at the bottom */}
-                <p className={styles.purity}>
-                    999.9 Purity
-                </p>
+                <p className={styles.purity}>999.9 Purity</p>
             </div>
         </div>
     );
