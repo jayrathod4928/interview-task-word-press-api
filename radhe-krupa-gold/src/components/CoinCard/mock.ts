@@ -1,4 +1,7 @@
 // src/data/mock.ts
+import maroonCard from "@/components/Images/Maroon-Card.jpg";
+import {StaticImageData} from "next/image";
+
 
 export interface WeightVariant {
     weight: string;
@@ -8,7 +11,7 @@ export interface WeightVariant {
 export interface CoinProduct {
     id: string;
     title: string;
-    imageUrl: string;
+    imageUrl: StaticImageData;
     isCertificate: boolean;
     priceRange: string; // Added this back for the default state
     variants: WeightVariant[];
@@ -30,7 +33,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         title: "GANESH JI",
         // This is the string shown BEFORE selection
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/24k_Laxmi_Ganesh_Gold_Coin.png?crop=center&height=645&v=1758634770&width=645",
+        imageUrl: maroonCard,
         isCertificate: true,
         variants: WEIGHT_VARIANTS,
     },
@@ -38,7 +41,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "2",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/9_88d566e8-f2fa-4dcd-acfe-05e8e548dba6.png?crop=center&height=645&v=1757163818&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -46,7 +49,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "3",
         title: "DO MURTI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -54,7 +57,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "4",
         title: "KALPAVRIKSHA",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -63,7 +66,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         title: "GANESH JI",
         // This is the string shown BEFORE selection
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: true,
         variants: WEIGHT_VARIANTS,
     },
@@ -71,7 +74,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "6",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -79,7 +82,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "7",
         title: "DO MURTI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -87,7 +90,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "8",
         title: "KALPAVRIKSHA",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/7_0f066055-cd3a-4525-89a9-f901747544d4.png?crop=center&height=645&v=1757163816&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -96,7 +99,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         title: "GANESH JI",
         // This is the string shown BEFORE selection
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/9_88d566e8-f2fa-4dcd-acfe-05e8e548dba6.png?crop=center&height=645&v=1757163818&width=645",
+        imageUrl: maroonCard,
         isCertificate: true,
         variants: WEIGHT_VARIANTS,
     },
@@ -104,7 +107,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "10",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/9_88d566e8-f2fa-4dcd-acfe-05e8e548dba6.png?crop=center&height=645&v=1757163818&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -112,7 +115,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "11",
         title: "DO MURTI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/9_88d566e8-f2fa-4dcd-acfe-05e8e548dba6.png?crop=center&height=645&v=1757163818&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -120,7 +123,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "12",
         title: "KALPAVRIKSHA",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrl: "https://earthmintgold.com/cdn/shop/files/9_88d566e8-f2fa-4dcd-acfe-05e8e548dba6.png?crop=center&height=645&v=1757163818&width=645",
+        imageUrl: maroonCard,
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },

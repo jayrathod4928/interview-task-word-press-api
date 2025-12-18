@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, ShoppingBag } from "lucide-react";
 import styles from "./ProductVariantCard.module.scss";
 import { CoinProduct, WeightVariant } from "./Mock";
+import Image from "next/image";
 
 export default function ProductVariantCard({ data }: { data: CoinProduct }) {
     const initialVariant =
@@ -42,7 +43,7 @@ export default function ProductVariantCard({ data }: { data: CoinProduct }) {
         <div className={styles.card}>
             {/* IMAGE */}
             <div className={styles.imageContainer}>
-                <img
+                <Image
                     src={data.imageUrl}
                     alt={`${data.title} gold coin`}
                     className={styles.productImage}
