@@ -15,17 +15,17 @@ const AboutUs = () => {
                 <div className={styles.heroImage}>
                     <Image
                         src={goldCard}
-                        alt="Earth Mint Gold Coins"
+                        alt="Radhe Krupa Gold Coins"
                     />
                 </div>
             </div>
 
             {/* Content */}
             <div className={styles.content}>
-                <h2>Earth Mint</h2>
+                <h2>Radhe Krupa</h2>
 
                 <p>
-                    At Earth Mint, we are more than just a gold production and development
+                    At Radhe Krupa, we are more than just a gold production and development
                     company—we are curators of craftsmanship, trust, and timeless value.
                     Our mission is deeply rooted in the belief that gold is not just a
                     precious metal, but a life enabler.
