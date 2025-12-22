@@ -54,11 +54,10 @@ const Footer: React.FC = () => {
                         </h3>
                         <ul className={styles.collapsibleContent}>
                             <li><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/contact">Contact Us</a></li>
-                            <li><a href="/bulk">Bulk Orders</a></li>
-                            <li><a href="/tie-ups">Jewellery Store Tie-ups</a></li>
-                            <li><a href="/blog">Blog Post</a></li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact-us">Contact Us</a></li>
+                            <li><a href="/bulk-orders">Bulk Orders</a></li>
+                            <li><a href="/jewellery-store-tie-ups">Jewellery Store Tie-ups</a></li>
                         </ul>
                     </div>
 

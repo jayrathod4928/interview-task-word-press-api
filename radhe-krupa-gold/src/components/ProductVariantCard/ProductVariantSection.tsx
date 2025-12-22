@@ -37,7 +37,7 @@ export default function ProductVariantSection({
 
             {showViewMore && (
                 <div className={styles.viewMoreContainer}>
-                    <Link href={viewMoreLink} className={styles.viewMoreBtn}>
+                    <Link href="/collections/24k-large-solid-pure-gold-coins" className={styles.viewMoreBtn}>
                         View More
                     </Link>
                 </div>

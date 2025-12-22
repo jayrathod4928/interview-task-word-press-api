@@ -69,9 +69,9 @@ export default function Header() {
           </span>
 
                     <div className={styles.dropdownContent}>
-                        <Link href="#">Large Gold Coin</Link>
-                        <Link href="#">Extra-Large Slim Gold Coin</Link>
-                        <Link href="/products">All Items</Link>
+                        <Link href="/collections/24k-extra-large-pure-gold-coins">Large Gold Coin</Link>
+                        <Link href="/collections/24k-large-solid-pure-gold-coins">Extra-Large Slim Gold Coin</Link>
+                        <Link href="/collections/24k-large-solid-pure-gold-coins">All Items</Link>
                     </div>
                 </div>
 
