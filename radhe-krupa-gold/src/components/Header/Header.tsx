@@ -99,8 +99,8 @@ export default function Header() {
                 </Link>
 
                 <Link
-                    href="/contact"
-                    className={pathname === "/contact" ? styles.active : ""}
+                    href="/contact-us"
+                    className={pathname === "/contact-us" ? styles.active : ""}
                 >
                     Contact Us
                 </Link>
@@ -165,8 +165,8 @@ export default function Header() {
                 </Link>
 
                 <Link
-                    href="/contact"
-                    className={pathname === "/contact" ? styles.active : ""}
+                    href="/contact-us"
+                    className={pathname === "/contact-us" ? styles.active : ""}
                     onClick={() => setMenuOpen(false)}
                 >
                     Contact Us

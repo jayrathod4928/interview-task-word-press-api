@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import Header from "@/components/Header/Header";
 import Slider from "@/components/Slider/Slider";
 import CoinCard from "@/components/CoinCard/CoinCard";
 import ProductVariantSection from "@/components/ProductVariantCard/ProductVariantSection";

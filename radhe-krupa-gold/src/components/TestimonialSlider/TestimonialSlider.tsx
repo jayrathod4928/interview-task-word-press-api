@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import styles from './TestimonialSlider.module.scss';
+import React, { useState, useEffect, useRef } from "react";
+import styles from "./TestimonialSlider.module.scss";
 
 interface Testimonial {
     id: number;
@@ -11,7 +11,6 @@ interface Testimonial {
     rating: number;
 }
 
-// Four testimonials
 const testimonials: Testimonial[] = [
     {
         id: 1,
@@ -47,26 +46,53 @@ const testimonials: Testimonial[] = [
     }
 ];
 
+// Split into slides of 2
+const slides = [
+    testimonials.slice(0, 2),
+    testimonials.slice(2, 4)
+];
+
+// Clone first slide for infinite loop
+const infiniteSlides = [...slides, slides[0]];
+
 const TestimonialSlider: React.FC = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const totalSlides = Math.ceil(testimonials.length / 2);
+    const [index, setIndex] = useState(0);
+    const [transition, setTransition] = useState(true);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const nextSlide = () => {
-        setCurrentIndex(prev => (prev === totalSlides - 1 ? 0 : prev + 1));
+        setIndex((prev) => prev + 1);
+        setTransition(true);
     };
 
     const prevSlide = () => {
-        setCurrentIndex(prev => (prev === 0 ? totalSlides - 1 : prev - 1));
+        if (index === 0) return;
+        setIndex((prev) => prev - 1);
+        setTransition(true);
     };
 
-    // Auto-slide every 5 seconds
+    // Auto slide
     useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 5000); // 5000ms = 5 seconds
-
-        return () => clearInterval(interval); // Cleanup on unmount
+        const interval = setInterval(nextSlide, 5000);
+        return () => clearInterval(interval);
     }, []);
+
+    // Seamless reset after cloned slide
+    useEffect(() => {
+        if (index === slides.length) {
+            timeoutRef.current = setTimeout(() => {
+                setTransition(false);
+                setIndex(0);
+            }, 500);
+        }
+
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+    }, [index]);
+
+    // Page number logic (IMPORTANT)
+    const displayIndex = index === slides.length ? 1 : index + 1;
 
     return (
         <section className={styles.container}>
@@ -78,37 +104,41 @@ const TestimonialSlider: React.FC = () => {
             <div className={styles.sliderWrapper}>
                 <div
                     className={styles.track}
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    style={{
+                        transform: `translateX(-${index * 100}%)`,
+                        transition: transition ? "transform 0.5s ease" : "none"
+                    }}
                 >
-                    {[...Array(totalSlides)].map((_, slideIndex) => (
-                        <div key={slideIndex} className={styles.slide}>
-                            {testimonials
-                                .slice(slideIndex * 2, slideIndex * 2 + 2)
-                                .map(item => (
-                                    <div key={item.id} className={styles.card}>
-                                        <h3>{item.title}</h3>
-                                        <p className={styles.quote}>{item.quote}</p>
-                                        <div className={styles.cardFooter}>
-                                            <div className={styles.stars}>
-                                                {"★".repeat(item.rating)}
-                                            </div>
-                                            <span className={styles.author}>
-                                                {item.author}, {item.location}
-                                            </span>
+                    {infiniteSlides.map((group, slideIndex) => (
+                        <div className={styles.slide} key={slideIndex}>
+                            {group.map((item) => (
+                                <div key={item.id} className={styles.card}>
+                                    <h3>{item.title}</h3>
+                                    <p className={styles.quote}>{item.quote}</p>
+                                    <div className={styles.cardFooter}>
+                                        <div className={styles.stars}>
+                                            {"★".repeat(item.rating)}
                                         </div>
+                                        <span className={styles.author}>
+                      {item.author}, {item.location}
+                    </span>
                                     </div>
-                                ))}
+                                </div>
+                            ))}
                         </div>
                     ))}
                 </div>
             </div>
 
+            {/* CONTROLS WITH PAGE NUMBER */}
             <div className={styles.controls}>
-                <button onClick={prevSlide} className={styles.arrow}>&lt;</button>
+                <button onClick={prevSlide}>&lt;</button>
+
                 <span className={styles.pageNumber}>
-                    {currentIndex + 1} / {totalSlides}
-                </span>
-                <button onClick={nextSlide} className={styles.arrow}>&gt;</button>
+          {displayIndex} / {slides.length}
+        </span>
+
+                <button onClick={nextSlide}>&gt;</button>
             </div>
         </section>
     );
