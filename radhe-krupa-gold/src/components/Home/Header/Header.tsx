@@ -61,7 +61,7 @@ export default function Header() {
 
             {/* ================= DESKTOP NAV (STICKY) ================= */}
             <nav className={styles.desktopNav}>
-                <Link href="/public" className={pathname === "/" ? styles.active : ""}>
+                <Link href="/" className={pathname === "/" ? styles.active : ""}>
                     Home
                 </Link>
 
@@ -126,7 +126,7 @@ export default function Header() {
                     <CloseIcon width={24} height={24} />
                 </button>
 
-                <Link href="/public" onClick={() => setMenuOpen(false)}>
+                <Link href="/" onClick={() => setMenuOpen(false)}>
                     Home
                 </Link>
 
