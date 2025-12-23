@@ -2,7 +2,7 @@ import Link from "next/link";
 import ProductVariantCard from "@/components/ProductVariantCard/ProductVariantCard";
 import styles from "@/app/page.module.scss"; // reuse same styles (or create new)
 
-import type { CoinProduct } from "@/components/ProductVariantCard/Mock";
+import type { CoinProduct } from "@/data/mock";
 
 type Props = {
     title: string;

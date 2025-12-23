@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, ShoppingBag } from "lucide-react";
 import styles from "./ProductVariantCard.module.scss";
-import { CoinProduct, WeightVariant } from "./Mock";
+import { CoinProduct, WeightVariant } from "@/data/mock";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductVariantCard({ data }: { data: CoinProduct }) {
     const initialVariant =
@@ -40,61 +41,80 @@ export default function ProductVariantCard({ data }: { data: CoinProduct }) {
     };
 
     return (
-        <div className={styles.card}>
-            {/* IMAGE */}
-            <div className={styles.imageContainer}>
-                <Image
-                    src={data.imageUrl}
-                    alt={`${data.title} gold coin`}
-                    className={styles.productImage}
-                />
-            </div>
+        <Link href={`/product/${data.id}`} className={styles.linkWrapper}>
+            <div className={styles.card}>
 
-            {/* ACTIONS */}
-            <div className={styles.actions}>
-                <div className={styles.dropdownWrapper} ref={dropdownRef}>
-                    <button
-                        type="button"
-                        className={styles.dropdownBtn}
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        {selectedVariant.weight}
-                        <ChevronDown
-                            size={16}
-                            style={{
-                                transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                                transition: "0.2s",
-                            }}
+                {/* IMAGE */}
+                <div className={styles.imageContainer}>
+                    {data.imageUrls?.length > 0 && (
+                        <Image
+                            src={data.imageUrls[0]}
+                            alt={`${data.title} gold coin`}
+                            className={styles.productImage}
+                            fill
                         />
-                    </button>
-
-                    {isOpen && (
-                        <ul className={styles.dropdownMenu}>
-                            {data.variants.map((variant) => (
-                                <li
-                                    key={variant.weight}
-                                    onClick={() => handleSelect(variant)}
-                                >
-                                    {variant.weight}
-                                </li>
-                            ))}
-                        </ul>
                     )}
                 </div>
 
-                <button type="button" className={styles.cartBtn}>
-                    <ShoppingBag color="white" size={20} />
-                </button>
-            </div>
+                {/* ACTIONS */}
+                <div
+                    className={styles.actions}
+                    onClick={(e) => e.stopPropagation()} // ⛔ prevent navigation
+                >
+                    <div className={styles.dropdownWrapper} ref={dropdownRef}>
+                        <button
+                            type="button"
+                            className={styles.dropdownBtn}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsOpen(!isOpen);
+                            }}
+                        >
+                            {selectedVariant.weight}
+                            <ChevronDown
+                                size={16}
+                                style={{
+                                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                                    transition: "0.2s",
+                                }}
+                            />
+                        </button>
 
-            {/* DETAILS */}
-            <div className={styles.details}>
-                <h3>{data.title}</h3>
-                <p className={styles.price}>
-                    {hasSelected ? selectedVariant.price : data.priceRange}
-                </p>
-                <p className={styles.purity}>999.9 Purity</p>
+                        {isOpen && (
+                            <ul className={styles.dropdownMenu}>
+                                {data.variants.map((variant) => (
+                                    <li
+                                        key={variant.weight}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleSelect(variant);
+                                        }}
+                                    >
+                                        {variant.weight}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+
+                    <button
+                        type="button"
+                        className={styles.cartBtn}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <ShoppingBag color="white" size={20} />
+                    </button>
+                </div>
+
+                {/* DETAILS */}
+                <div className={styles.details}>
+                    <h3>{data.title}</h3>
+                    <p className={styles.price}>
+                        {hasSelected ? selectedVariant.price : data.priceRange}
+                    </p>
+                    <p className={styles.purity}>999.9 Purity</p>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }

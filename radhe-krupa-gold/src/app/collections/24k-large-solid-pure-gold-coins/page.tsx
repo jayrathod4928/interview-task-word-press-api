@@ -2,7 +2,7 @@ import ProductVariantCard from "@/components/ProductVariantCard/ProductVariantCa
 import styles from "@/app/page.module.scss";
 
 // ✅ Use SAME mock data
-import { MOCK_PRODUCTS } from "@/components/ProductVariantCard/Mock";
+import { MOCK_PRODUCTS } from "@/data/mock";
 
 export default function LargeSolidGoldCoinsPage() {
     return (

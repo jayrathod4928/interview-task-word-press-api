@@ -11,7 +11,7 @@ import OccasionGrid from "@/components/OccasionCard/OccasionGrid/OccasionGrid";
 // Mock Data Imports
 import { OCCASION_MOCK_DATA } from "@/components/OccasionCard/mock";
 import { MOCK_PRODUCTS as COIN_PRODUCTS } from "@/data/mock";
-import { MOCK_PRODUCTS as VARIANT_PRODUCTS } from "@/components/ProductVariantCard/Mock";
+import { MOCK_PRODUCTS as VARIANT_PRODUCTS } from "@/data/mock";
 
 import styles from "./page.module.scss";
 
@@ -76,15 +76,6 @@ export default function Page() {
                     )}
                 </section>
 
-                {/* ===== PRODUCT VARIANT CARD SECTION (REUSABLE) ===== */}
-                <ProductVariantSection
-                    title="Large Solid Gold Coins"
-                    subtitle="Make a Statement with Solid Gold"
-                    products={VARIANT_PRODUCTS}
-                    visibleLimit={8}
-                    viewMoreLink="/collections/24k-extra-large-pure-gold-coins"
-                />
-
                 {/* 🛑 NEW SECTION: Occasion Grid at the bottom */}
                 <section className={styles.occasionSection}>
                     {/* Optionally, you can add a title here if the OccasionGrid component
@@ -109,16 +100,15 @@ export default function Page() {
                     <WhyUsSection />
                 </section>
 
-                <section>
-                    {/* ===== PRODUCT VARIANT CARD SECTION (REUSABLE) ===== */}
-                    <ProductVariantSection
-                        title=""
-                        subtitle=""
-                        products={VARIANT_PRODUCTS}
-                        visibleLimit={8}
-                        viewMoreLink="/collections/24k-extra-large-pure-gold-coins"
-                    />
-                </section>
+                {/* ===== PRODUCT VARIANT CARD SECTION (REUSABLE) ===== */}
+                <ProductVariantSection
+                    title="Large Solid Gold Coins"
+                    subtitle="Make a Statement with Solid Gold"
+                    products={VARIANT_PRODUCTS}
+                    visibleLimit={8}
+                    viewMoreLink="/collections/24k-extra-large-pure-gold-coins"
+                />
+
                 <TestimonialSlider />
                 <section>
 

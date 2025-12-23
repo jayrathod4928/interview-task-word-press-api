@@ -23,27 +23,27 @@ export const OCCASION_MOCK_DATA: OccasionCardData[] = [
         title: "Weddings & Anniversaries",
         // ✅ FIX: Use the imported image module instead of the string path
         imageUrl: Wedding,
-        linkUrl: "/collections/weddings",
+        linkUrl: "/bulk-orders",
     },
     {
         id: 2,
         title: "Birthday parties & Graduation",
         // ✅ FIX: Use the imported image module
         imageUrl: Birthday,
-        linkUrl: "/collections/birthdays",
+        linkUrl: "/bulk-orders",
     },
     {
         id: 3,
         title: "Diwali, Rakshabandhan & Festivals",
         // ✅ FIX: Use the imported image module
         imageUrl: Festival,
-        linkUrl: "/collections/festivals",
+        linkUrl: "/bulk-orders",
     },
     {
         id: 4,
         title: "Corporate & Employee Rewards",
         // ✅ FIX: Use the imported image module
         imageUrl: Corporate,
-        linkUrl: "/collections/corporate",
+        linkUrl: "/bulk-orders",
     },
 ];

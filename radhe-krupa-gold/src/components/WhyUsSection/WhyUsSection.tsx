@@ -14,7 +14,7 @@ const WhyUsSection: React.FC = () => {
             {/* Why Us Header */}
             <div className={styles.header}>
                 <h2>Why Us ?</h2>
-                <p>We don't just sell Gold – We set the Standard</p>
+                <p>We don&#39;t just sell Gold – We set the Standard</p>
             </div>
 
             {/* Features Grid */}
@@ -27,12 +27,6 @@ const WhyUsSection: React.FC = () => {
                         <h3>{feature.text}</h3>
                     </div>
                 ))}
-            </div>
-
-            {/* All Products Footer */}
-            <div className={styles.footer}>
-                <h2>All Products</h2>
-                <p>Own the Purity of 24K Gold- Browse All Products</p>
             </div>
         </section>
     );

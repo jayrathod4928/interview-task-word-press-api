@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import styles from "./ProductDetails.module.scss";
 import { CoinProduct, WeightVariant } from "@/data/mock";
+import ReviewSummary from "./ReviewSummary/ReviewSummary";
 
 export default function ProductDetails({ product }: { product: CoinProduct }) {
     const [selectedVariant, setSelectedVariant] = useState<WeightVariant>(
@@ -31,6 +32,7 @@ export default function ProductDetails({ product }: { product: CoinProduct }) {
     };
 
     return (
+        <>
         <div className={styles.container}>
             {/* GALLERY */}
             <div className={styles.gallery}>
@@ -82,11 +84,13 @@ export default function ProductDetails({ product }: { product: CoinProduct }) {
                             onClick={() => setSelectedVariant(v)}
                         >
                             <div className={styles.weightImg}>
-                                <Image
-                                    src={v.image}
-                                    alt={v.weight}
-                                    fill
-                                />
+                                {v.image && (
+                                    <Image
+                                        src={v.image}
+                                        alt={v.weight}
+                                        fill
+                                    />
+                                )}
                             </div>
                             <span className={styles.weightText}>{v.weight}</span>
                         </button>
@@ -152,5 +156,7 @@ export default function ProductDetails({ product }: { product: CoinProduct }) {
                 </div>
             </div>
         </div>
+            <ReviewSummary />
+        </>
     );
 }

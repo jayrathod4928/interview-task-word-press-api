@@ -7,7 +7,7 @@ import {StaticImageData} from "next/image";
 export interface WeightVariant {
     weight: string;
     price: string;
-    image: StaticImageData;
+    image: StaticImageData | undefined; // ✅ optional
 }
 
 export interface CoinProduct {
@@ -15,8 +15,11 @@ export interface CoinProduct {
     title: string;
     imageUrls: StaticImageData[];
     isCertificate: boolean;
-    priceRange: string; // Added this back for the default state
+    priceRange: string;
+    initialWeight?: string; // ✅ optional (THIS IS THE FIX)
     variants: WeightVariant[];
+    /** Optional fields */
+    imageUrl?: StaticImageData;
 }
 
 export const WEIGHT_VARIANTS: WeightVariant[] = [
@@ -43,7 +46,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "2",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        imageUrls: [goldCard],
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -58,10 +61,17 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
     {
         id: "4",
         title: "KALPAVRIKSHA",
-        priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        priceRange: "Rs. 1,910.00 - Rs. 1,19,760.00",
+        imageUrls: [goldCard, maroonCard,goldCard, maroonCard,goldCard, maroonCard,goldCard, maroonCard],
         isCertificate: false,
-        variants: WEIGHT_VARIANTS,
+        initialWeight: "0.1gm", // ✅ allowed
+        variants: [
+            { weight: "0.1gm", price: "Rs. 1,910.00", image: goldCard },
+            { weight: "0.25gm", price: "Rs. 4,035.00", image: goldCard },
+            { weight: "0.5gm", price: "Rs. 7,490.00", image: goldCard },
+            { weight: "1gm", price: "Rs. 14,980.00", image: goldCard },
+            { weight: "2gm", price: "Rs. 1,19,760.00", image: goldCard },
+        ],
     },
     {
         id: "5",
@@ -76,7 +86,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "6",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        imageUrls: [goldCard],
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -92,7 +102,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "8",
         title: "KALPAVRIKSHA",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        imageUrls: [goldCard],
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -109,7 +119,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "10",
         title: "LAXMI JI",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        imageUrls: [goldCard],
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
@@ -125,7 +135,7 @@ export const MOCK_PRODUCTS: CoinProduct[] = [
         id: "12",
         title: "KALPAVRIKSHA",
         priceRange: "Rs. 1,145.00 - Rs. 29,080.00",
-        imageUrls: [maroonCard],
+        imageUrls: [goldCard],
         isCertificate: false,
         variants: WEIGHT_VARIANTS,
     },
