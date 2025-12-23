@@ -45,13 +45,17 @@
 /* Override the AppForm button using your provided global style */
 :global(.submit-btn) {
   background-color: #561211 !important;
-  color: #D4AF37 !important;
+  color: #ffffff !important;
   padding: 12px 50px !important;
   text-transform: none !important;
   font-weight: 600 !important;
   box-shadow: none !important;
   width: 100%; /* Login button usually looks better full width */
   margin-top: 20px;
+  &:hover {
+    background-color: #561211 !important; // Keeps the background exactly the same
+    color: #d4af37 !important;           // Change this hex to whatever color you want the text to become
+  }
 }
 
 .forgotLink:hover {
