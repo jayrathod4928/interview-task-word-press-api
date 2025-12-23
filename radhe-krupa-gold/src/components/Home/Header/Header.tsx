@@ -40,10 +40,12 @@ export default function Header() {
                     </div>
 
                     <div className={styles.logo}>
-                        <Link href="/public">
+                        <Link href="/">
                             <Image src={Logo} alt="Radhe Krupa" width={60} height={60} />
                         </Link>
+                        <Link href="/">
                         <span>Radhe Krupa</span>
+                        </Link>
                     </div>
 
                     <div className={styles.rightIcons}>
