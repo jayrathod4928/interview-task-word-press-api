@@ -60,7 +60,15 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #ffffff;
+  color: #d4af37; // Base Gold Color
+  transition: color 0.3s ease; // Smooth transition
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #ffffff; // Changes to White on hover
+  }
 }
 
 .menuToggle {

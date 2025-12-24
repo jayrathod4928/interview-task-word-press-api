@@ -57,8 +57,9 @@ export default function ProductDetails({ product }: { product: CoinProduct }) {
             {/* ✅ Toast Notification */}
             <Toast
                 isVisible={showToast}
-                message={`${product.title} (${selectedVariant.weight}) added to cart!`}
-            />
+                message={`${product.title} (${selectedVariant.weight}) added to cart!`} onClose={function (): void {
+                throw new Error("Function not implemented.");
+            }}            />
 
             <div className={styles.container}>
                 {/* GALLERY */}

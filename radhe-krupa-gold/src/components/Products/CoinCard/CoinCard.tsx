@@ -55,8 +55,9 @@ export default function CoinCard({ data }: { data: CoinProduct }) {
             {/* ✅ Toast Component */}
             <Toast
                 isVisible={showToast}
-                message={`${data.title} added to cart!`}
-            />
+                message={`${data.title} added to cart!`} onClose={function (): void {
+                throw new Error("Function not implemented.");
+            }}            />
 
             <Link href={`/product/${data.id}`} className={styles.linkWrapper}>
                 <div className={styles.imageContainer}>

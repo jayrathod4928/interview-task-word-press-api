@@ -16,24 +16,42 @@ import SearchIcon from "@/components/Icons/SearchIcon";
 import UserIcon from "@/components/Icons/UserIcon";
 import CartIcon from "@/components/Icons/CartIcon";
 
+// Import your SearchBar component and mock data
+import SearchBar from "@/components/SearchBar/SearchBar";
+import { MOCK_PRODUCTS } from "@/data/mock";
+
 export default function Header() {
     const pathname = usePathname();
     const { items } = useCart();
     const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
-
-
-
-    // const cartCount = items.reduce(
-    //     (sum, item) => sum + item.quantity,
-    //     0
-    // );
-
     const [menuOpen, setMenuOpen] = useState(false);
     const [productsOpen, setProductsOpen] = useState(false);
 
+    // State to toggle the Search Component
+    const [searchOpen, setSearchOpen] = useState(false);
+
+    // Disable body scroll when search is open to maintain focus
+    useEffect(() => {
+        if (searchOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [searchOpen]);
+
     return (
         <>
+            {/* ================= SEARCH COMPONENT (WITH BLUR) ================= */}
+            <AnimatePresence>
+                {searchOpen && (
+                    <SearchBar
+                        products={MOCK_PRODUCTS}
+                        onClose={() => setSearchOpen(false)}
+                    />
+                )}
+            </AnimatePresence>
+
             {/* ================= TOP BAR (SCROLLS AWAY) ================= */}
             <header className={styles.topHeader}>
                 <div className={styles.topBar}>
@@ -46,7 +64,12 @@ export default function Header() {
                             <MenuIcon />
                         </button>
 
-                        <button className={styles.iconBtn}>
+                        {/* Search Icon triggers the overlay */}
+                        <button
+                            className={styles.iconBtn}
+                            onClick={() => setSearchOpen(true)}
+                            aria-label="Search"
+                        >
                             <SearchIcon width={20} height={20} />
                         </button>
                     </div>
@@ -56,12 +79,11 @@ export default function Header() {
                             <Image src={Logo} alt="Radhe Krupa" width={60} height={60} />
                         </Link>
                         <Link href="/">
-                        <span>Radhe Krupa</span>
+                            <span>Radhe Krupa</span>
                         </Link>
                     </div>
 
                     <div className={styles.rightIcons}>
-                        {/* Direct link to sign-in page */}
                         <Link href="/signin" className={styles.iconLink}>
                             <UserIcon width={25} height={25} />
                         </Link>
@@ -100,9 +122,9 @@ export default function Header() {
                         pathname.startsWith("/products") ? styles.active : ""
                     }`}
                 >
-          <span>
-            Products <span className={styles.arrow}>▼</span>
-          </span>
+                    <span>
+                        Products <span className={styles.arrow}>▼</span>
+                    </span>
 
                     <div className={styles.dropdownContent}>
                         <Link href="/collections/24k-extra-large-pure-gold-coins">Large Gold Coin</Link>
@@ -111,33 +133,19 @@ export default function Header() {
                     </div>
                 </div>
 
-                <Link
-                    href="/bulk-orders"
-                    className={pathname === "/bulk-orders" ? styles.active : ""}
-                >
+                <Link href="/bulk-orders" className={pathname === "/bulk-orders" ? styles.active : ""}>
                     Bulk Orders
                 </Link>
 
-                <Link
-                    href="/jewellery-store-tie-ups"
-                    className={
-                        pathname === "/jewellery-store-tie-ups" ? styles.active : ""
-                    }
-                >
+                <Link href="/jewellery-store-tie-ups" className={pathname === "/jewellery-store-tie-ups" ? styles.active : ""}>
                     Jewellery Store Tie-ups
                 </Link>
 
-                <Link
-                    href="/about-us"
-                    className={pathname === "/about-us" ? styles.active : ""}
-                >
+                <Link href="/about-us" className={pathname === "/about-us" ? styles.active : ""}>
                     About Us
                 </Link>
 
-                <Link
-                    href="/contact-us"
-                    className={pathname === "/contact-us" ? styles.active : ""}
-                >
+                <Link href="/contact-us" className={pathname === "/contact-us" ? styles.active : ""}>
                     Contact Us
                 </Link>
             </nav>
@@ -176,35 +184,19 @@ export default function Header() {
                     </div>
                 </div>
 
-                <Link
-                    href="/bulk-orders"
-                    className={pathname === "/bulk-orders" ? styles.active : ""}
-                    onClick={() => setMenuOpen(false)}
-                >
+                <Link href="/bulk-orders" className={pathname === "/bulk-orders" ? styles.active : ""} onClick={() => setMenuOpen(false)}>
                     Bulk Orders
                 </Link>
 
-                <Link
-                    href="/jewellery-store-tie-ups"
-                    className={pathname === "/jewellery-store-tie-ups" ? styles.active : ""}
-                    onClick={() => setMenuOpen(false)}
-                >
+                <Link href="/jewellery-store-tie-ups" className={pathname === "/jewellery-store-tie-ups" ? styles.active : ""} onClick={() => setMenuOpen(false)}>
                     Jewellery Store Tie-ups
                 </Link>
 
-                <Link
-                    href="/about-us"
-                    className={pathname === "/about" ? styles.active : ""}
-                    onClick={() => setMenuOpen(false)}
-                >
+                <Link href="/about-us" className={pathname === "/about" ? styles.active : ""} onClick={() => setMenuOpen(false)}>
                     About Us
                 </Link>
 
-                <Link
-                    href="/contact-us"
-                    className={pathname === "/contact-us" ? styles.active : ""}
-                    onClick={() => setMenuOpen(false)}
-                >
+                <Link href="/contact-us" className={pathname === "/contact-us" ? styles.active : ""} onClick={() => setMenuOpen(false)}>
                     Contact Us
                 </Link>
             </nav>
