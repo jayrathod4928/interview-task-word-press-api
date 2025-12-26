@@ -9,7 +9,7 @@ export const metadata = {
 export default function AboutPage() {
     return (
         <main className="pb-20">
-            {/* --- HERO SECTION --- */}
+            {/* --- HERO SECTIONgit branch -M master --- */}
             <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full opacity-20">
                     <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-blue-500 blur-[150px]" />
