@@ -1,16 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
     const pathname = usePathname();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'Blog', href: '/blogs' },
         { name: 'About', href: '/about' },
     ];
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
@@ -26,7 +30,7 @@ export default function Header() {
                     </span>
                 </Link>
 
-                {/* Navigation Links */}
+                {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => {
                         const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
@@ -44,16 +48,48 @@ export default function Header() {
                     })}
                 </nav>
 
-                {/* Action Button */}
-                <div className="flex items-center gap-4">
-                    <button className="hidden sm:block text-sm font-semibold text-gray-600 hover:text-gray-900">
-                        Sign In
-                    </button>
-                    <button className="bg-gray-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors shadow-lg shadow-gray-200">
-                        Get Started
+                {/* Mobile Menu Button (Hamburger) */}
+                <div className="md:hidden flex items-center">
+                    <button
+                        onClick={toggleMenu}
+                        className="p-2 text-gray-600 hover:text-blue-600 focus:outline-none"
+                        aria-label="Toggle menu"
+                    >
+                        {isMenuOpen ? (
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        ) : (
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        )}
                     </button>
                 </div>
             </div>
+
+            {/* Mobile Navigation Menu */}
+            {isMenuOpen && (
+                <nav className="md:hidden bg-white border-b border-gray-100 animate-in slide-in-from-top duration-300">
+                    <div className="flex flex-col p-4 space-y-4">
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                            return (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className={`text-base font-semibold transition-colors ${
+                                        isActive ? 'text-blue-600' : 'text-gray-600'
+                                    }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </nav>
+            )}
         </header>
     );
 }
