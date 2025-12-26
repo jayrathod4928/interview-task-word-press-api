@@ -19,7 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="min-h-[calc(100vh-64px)]">
                 {children}
             </main>
-            {/* You can add a Footer component here later */}
         </Providers>
         </body>
         </html>
